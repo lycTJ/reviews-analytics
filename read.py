@@ -1,5 +1,5 @@
 
-data = []
+data = []						 #總筆數
 count = 0
 with open('reviews.txt', 'r') as f:
 	for line in f:
@@ -9,9 +9,16 @@ with open('reviews.txt', 'r') as f:
 			#print(len(data))
 print('檔案讀取完了，總共有', len(data),'筆資料')
 
-sum_len = 0
+sum_len = 0                     #每筆留言平均長度
 for d in data:
 	sum_len = sum_len + len(d)
+print('每筆留言平均長度為:', sum_len / len(data))
 
-avg_len = sum_len / len(data)
-print('每筆留言平均長度為:', avg_len)
+
+new = []                        #篩選
+for d in data:
+	if len(d) < 100:
+		new.append(d)
+print('一共有', len(new), '筆留言長度小於100')
+print(new[0])
+print(new[1])
