@@ -9,6 +9,8 @@ with open('reviews.txt', 'r') as f:
 			print(len(data))
 print('檔案讀取完了，總共有', len(data),'筆資料')
 
+
+
 sum_len = 0                     #每筆留言平均長度
 for d in data:
 	sum_len = sum_len + len(d)
@@ -38,3 +40,34 @@ print(good)
 
 bad = ['bad' in d for d in data]
 print(bad)
+
+
+#文字計數
+
+wc = {} #word-count
+for d in data:
+	words = d.split(' ')
+	for word in words:
+		if word in wc:
+			wc[word] += 1
+		else:
+			wc[word] = 1 #新增的key進wc字典
+		
+for word in wc:
+	if wc[word] > 100:
+		print(word, wc[word])
+# print(len(wc))
+# print(wc['Allen'])
+
+while True:
+	word =  input('請問想查什麼字: ')
+	if word == 'q':
+		break
+	if word in wc:
+		print(word, '出現過為', wc[word])
+	else:
+		print('這個字沒有出現過喔!')
+print('感謝使用本功能')
+
+
+
